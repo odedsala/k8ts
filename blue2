@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green
+  labels:
+    service-name: test
+    name: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: green
+  template:
+    metadata: 
+     name: app1 
+     labels:
+       service-name: test
+       name: green
+    spec:
+     containers:
+     - name: bear-app
+       image: supergiantkir/animals:bear
+       ports: 
+       - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+  labels:
+    service-name: test
+    name: blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: blue
+  template:
+    metadata: 
+     name: app1 
+     labels:
+       service-name: test
+       name: blue
+    spec:
+     containers:
+     - name: bear-app
+       image: supergiantkir/animals:moose
+       ports: 
+       - containerPort: 80
+---
+kind: Service      
+apiVersion: v1     
+metadata:
+  name: my-service 
+spec:
+  selector:
+    service-name: test    
+  ports:          
+  - name: http    
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
