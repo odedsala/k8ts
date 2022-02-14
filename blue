@@ -7,11 +7,6 @@ metadata:
     tier: frontend
 spec:
   replicas: 2
-  strategy:
-   type: RollingUpdate
-   rollingUpdate:
-    maxSurge: 100%
-    maxUnavailable: 25%  
   selector:
     matchLabels:
       tier: frontend
@@ -42,12 +37,7 @@ metadata:
     app: ui
     tier: frontend
 spec:
-  replicas: 1
-  strategy:
-   type: RollingUpdate
-   rollingUpdate:
-    maxSurge: 100%
-    maxUnavailable: 25%  
+  replicas: 1  
   selector:
     matchLabels:
       tier: frontend
