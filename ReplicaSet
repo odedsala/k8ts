@@ -1,4 +1,5 @@
 apiVersion: apps/v1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: frontend
@@ -11,23 +12,24 @@ spec:
     matchLabels:
       tier: frontend
   template:  
-  metadata:
- name: sidecarpod
-spec:
- containers:
- - name: bear
+    metadata:
+      labels:
+        tier: frontend
+  spec:
+   containers:
+   - name: bear
    image: supergiantkir/animals:bear
    ports:
    - containerPort: 80
    volumeMounts:
     - name: app-storage
       mountPath: /storage
- - name: moose
+   - name: moose
    image: yanivomc/spring-music:latest
    ports:
    - containerPort: 8080
    volumeMounts:
-    - name: app-storage
+   - name: app-storage
       mountPath: /storage
  volumes:
  - name: app-storage
