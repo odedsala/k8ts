@@ -6,37 +6,37 @@ metadata:
     app: ui
     tier: frontend
 spec:
- replicas: 3
+  replicas: 3
   strategy:
    type: RollingUpdate
    rollingUpdate:
     maxSurge: 100%
-    maxUnavailable: 25%
+    maxUnavailable: 25%  
   selector:
     matchLabels:
       tier: frontend
   template:
-    metadata:
-      name: myapp
-      labels:
-        tier: frontend
+    metadata: 
+     name: app1 
+     labels:
+       tier: frontend
     spec:
      containers:
-     - name: bear
+     - name: app1
        image: supergiantkir/animals:bear
-       ports:
+       ports: 
        - containerPort: 80
        volumeMounts:
-       - name: app-storage
-         mountPath: /storage
-     - name: moose
+       - mountPath: /storage
+         name: app-storage
+     - name: app2
        image: yanivomc/spring-music:latest
-       ports:
+       ports: 
        - containerPort: 8080
        volumeMounts:
-       - name: app-storage
-         mountPath: /storage
+       - mountPath: /storage
+         name: app-storage
      volumes:
      - name: app-storage
        hostPath:
-          path: /data
+          path: /tmp
