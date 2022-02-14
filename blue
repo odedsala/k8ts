@@ -69,7 +69,7 @@ spec:
      - name: app-storage
        hostPath:
           path: /tmp
-----
+---
 kind: Service 
 apiVersion: v1     
 metadata:
