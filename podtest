@@ -6,12 +6,16 @@ spec:
   containers:
   - name: bear
     image: supergiantkir/animals:bear
-    volumeMounts:
+   ports:
+   - containerPort: 80
+   volumeMounts:
     - name: app-storage
       mountPath: /storage
   - name: springapp
     image: yanivomc/spring-music:latest
-    volumeMounts:
+   ports:
+   - containerPort: 8080
+   volumeMounts:
     - name: app-storage
       mountPath: /storage
   volumes:
