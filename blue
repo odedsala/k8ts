@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+  labels:
+    app: ui
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: myapp
+      labels:
+        tier: frontend
+    spec:
+     containers:
+     - name: bear
+       image: supergiantkir/animals:bear
+       ports:
+       - containerPort: 80
+       volumeMounts:
+       - name: app-storage
+         mountPath: /storage
