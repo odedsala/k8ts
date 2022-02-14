@@ -7,24 +7,65 @@ metadata:
     tier: frontend
 spec:
   replicas: 2
+  strategy:
+   type: RollingUpdate
+   rollingUpdate:
+    maxSurge: 100%
+    maxUnavailable: 25%  
   selector:
     matchLabels:
       tier: frontend
   template:
-    metadata:
-      name: myapp
-      labels:
-        tier: frontend
+    metadata: 
+     name: app1 
+     labels:
+       tier: frontend
     spec:
      containers:
-     - name: bear
+     - name: app1
        image: supergiantkir/animals:bear
-       ports:
+       ports: 
        - containerPort: 80
        volumeMounts:
-       - name: app-storage
-         mountPath: /storage
- volumes:
+       - mountPath: /storage
+         name: app-storage
+     volumes:
      - name: app-storage
        hostPath:
-          path: /data
+          path: /tmp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green
+  labels:
+    app: ui
+    tier: frontend
+spec:
+  replicas: 2
+  strategy:
+   type: RollingUpdate
+   rollingUpdate:
+    maxSurge: 100%
+    maxUnavailable: 25%  
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata: 
+     name: app1 
+     labels:
+       tier: frontend
+    spec:
+     containers:
+     - name: app1
+       image: supergiantkir/animals:moose
+       ports: 
+       - containerPort: 80
+       volumeMounts:
+       - mountPath: /storage
+         name: app-storage
+     volumes:
+     - name: app-storage
+       hostPath:
+          path: /tmp
