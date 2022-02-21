@@ -15,7 +15,7 @@ spec:
   ingressClassName: nginx
   rules:
   - host: bear.52.17.9.50.nip.io/bear/
-     http:
+    http:
       paths:
       - path: /
         pathType: Prefix
