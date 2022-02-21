@@ -14,7 +14,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: bear.52.17.9.50.nip.io/bear/
+  - host: bear.52.17.9.50.nip.io
     http:
       paths:
       - path: /
@@ -24,7 +24,7 @@ spec:
              name: bear-svc
              port:
                 number: 80
-      - host: moose.52.17.9.50.nip.io/moose/
+      - host: moose.52.17.9.50.nip.io
       - path: /
         pathType: Prefix
         backend:
