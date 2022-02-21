@@ -24,7 +24,9 @@ spec:
              name: bear-svc
              port:
                 number: 80
-      - host: moose.52.17.9.50.nip.io
+  - host: moose.52.17.9.50.nip.io
+    http:
+      paths:
       - path: /
         pathType: Prefix
         backend:
