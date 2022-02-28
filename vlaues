@@ -1,0 +1,11 @@
+service:
+  Service_name: my-service
+  selector_type: LoadBalancer
+  port: 80
+  targetPort: 8080
+Deployment:
+  Deployment_name: spring-music
+  replicas_number: 1
+  repo: yanivomc
+  tag: latest
+  image: spring-music
